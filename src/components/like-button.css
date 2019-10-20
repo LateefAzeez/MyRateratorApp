@@ -1,0 +1,9 @@
+/* 
+Like Button
+*/
+.likebutt {
+  size: 0.7rem;
+  font-family: "Roboto";
+  background-color: #303030;
+  color: white;
+}

@@ -1,0 +1,31 @@
+/* 
+	stars.css
+*/
+
+.star {
+  cursor: pointer;
+  background-color: grey;
+  height: 1.5rem;
+  width: 1.5rem;
+  margin: 0.2rem;
+  display: inline-block;
+  clip-path: polygon(
+    50% 0%,
+    63% 38%,
+    100% 38%,
+    69% 59%,
+    82% 100%,
+    50% 75%,
+    18% 100%,
+    31% 59%,
+    0% 38%,
+    37% 38%
+  );
+}
+.active {
+  background-color: rgb(152, 0, 0);
+}
+#rate-display {
+  font-size: 0.7rem;
+  font-family: "Lato";
+}
