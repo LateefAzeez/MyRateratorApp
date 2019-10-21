@@ -19,14 +19,6 @@ export class App extends Component {
     };
   }
 
-  instructorRating = () => {
-    const details = this.state.data;
-    for (let i = 0; i < details.length; i++) {
-      let id = details[i];
-      console.log(id.Ratings);
-    }
-  };
-
   NewRating = Value => {
     this.setState({ ratings: Value });
   };
