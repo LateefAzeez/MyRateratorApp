@@ -16,8 +16,8 @@ export class Stars extends Component {
   ///
   render() {
     /// Sample props.
-    const Rating = this.props.rating;
-    ///console.log("[Stars] Render, Rating=" + Rating);
+    const Rating = this.props.ratings;
+    console.log(Rating);
 
     /// Generate markup.
     return (

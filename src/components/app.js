@@ -12,10 +12,10 @@ export class App extends Component {
     this.state = {
       data: AppData,
       /* rating: AppData.Ratings, */
-      counter: 40,
-      ratings: 2 /* AppData.Ratings, */,
+      Likes: 40,
+      ratings: AppData.Ratings,
       reviews: "today 13:45",
-      instructorNames: AppData.Instructors.Instructor
+      instructorNames: AppData.Instructors
     };
   }
 
@@ -33,9 +33,9 @@ export class App extends Component {
 
   handleIncrease = () => {
     //console.log("[LIKE] I receive a click");
-    const counter = this.state.counter;
+    const Likes = this.state.Likes;
 
-    this.setState({ counter: counter + 1 });
+    this.setState({ Likes: Likes + 1 });
   };
 
   ///
@@ -45,7 +45,32 @@ export class App extends Component {
     console.log(this.state.counter);
     console.log(this.state.ratings);
 
-    const Rating = this.state.ratings;
+    const Ratings = this.state.ratings;
+
+    const average = array => {
+      let sums = {},
+        counts = {},
+        RateAggs = [],
+        InstructorSid;
+      for (let i = 0; i < array.length; i++) {
+        InstructorSid = array[i].InstructorSid;
+        if (!(InstructorSid in sums)) {
+          sums[InstructorSid] = 0;
+          counts[InstructorSid] = 0;
+        }
+        sums[InstructorSid] += array[i].Rating;
+        counts[InstructorSid]++;
+      }
+      for (InstructorSid in sums) {
+        RateAggs.push({
+          InstructorSid: InstructorSid,
+          Rating: Math.floor(sums[InstructorSid] / counts[InstructorSid])
+        });
+      }
+      return RateAggs;
+    };
+
+    console.log(average(Ratings));
 
     return (
       <div className="main-container">
@@ -58,16 +83,10 @@ export class App extends Component {
         <br />
         <div>
           <RatingCard
-            ratings={Rating}
+            dataSet={this.state.AppData}
+            ratings={average(Ratings)}
             onIncrease={this.handleIncrease}
-            counter={this.state.counter}
-            review={this.state.reviews}
-            instructors={this.state.instructorNames}
-          />
-          <RatingCard
-            ratings={Rating}
-            onIncrease={this.handleIncrease}
-            counter={this.state.counter}
+            Likes={this.state.Likes}
             review={this.state.reviews}
             instructors={this.state.instructorNames}
           />
