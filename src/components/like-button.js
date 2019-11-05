@@ -8,7 +8,7 @@ export class Likes extends Component {
       Likes: this.props.initialLikes
     };
   }
-
+  // update the Like state when the like button is clicked
   handleIncrease = () => {
     //console.log("[LIKE] I receive a click");
     const Likes = this.state.Likes;
@@ -16,7 +16,7 @@ export class Likes extends Component {
     this.setState({ Likes: Likes + 1 });
   };
   render() {
-    console.log(this.state.Likes);
+    // console.log(this.state.Likes);
     return (
       <div>
         <button className="likebutt" onClick={this.handleIncrease}>

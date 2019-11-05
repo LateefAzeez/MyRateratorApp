@@ -10,14 +10,16 @@ export class RatingCard extends Component {
       Likes: this.props.data.LikeDetail
     };
   }
+  // for future improvement: Allow users to add rating
   NewRating = Value => {
     this.setState({ ratings: Value });
   };
 
   render() {
     const datas = this.props.data;
-    console.log(this.state.Likes);
+    // console.log(this.state.Likes);
 
+    // map through the data to render each card based on data from the app component
     return datas.map((data, index) => {
       return (
         <div className="card-container" key={index.InstructorSid}>

@@ -31,6 +31,7 @@ export class App extends Component {
     const Likes = Data.Likes;
     //console.log(Data);
 
+    // get the aggregate of ratings per instructor
     let sums = {},
       counts = {},
       RateAggs = [],
@@ -54,7 +55,9 @@ export class App extends Component {
       });
     }
 
-    console.log(RateAggs);
+    // console.log(RateAggs);
+
+    // iterate through the rating data to fetch out needed info and pass to the card component
 
     RateAggs.map(rating => {
       AppData.Ratings.some(item => {
@@ -79,7 +82,7 @@ export class App extends Component {
           return (rating.CollegeName = schoolname.Name);
         }
       });
-      console.log(RateAggs);
+      // console.log(RateAggs);
     });
 
     return (
