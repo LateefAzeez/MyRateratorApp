@@ -4,31 +4,35 @@ import { Stars } from "./stars.js";
 import "./rating-card.css";
 
 export class RatingCard extends Component {
-  render() {
-    const { ratings } = this.props;
-    console.log(ratings);
+  constructor(props) {
+    super(props);
+    this.state = {
+      Likes: this.props.data.LikeDetail
+    };
+  }
+  NewRating = Value => {
+    this.setState({ ratings: Value });
+  };
 
-    return (
-      <div className="card-container">
-        <div className="top-div">
-          <p className="inst-name">Instructor Name</p>
-          <p className="college">College Name</p>
-          {ratings.map(rating => (
-            <Stars
-              className="star"
-              key={rating.InstructorSid}
-              ratings={rating.Rating}
-            />
-          ))}
+  render() {
+    const datas = this.props.data;
+    console.log(this.state.Likes);
+
+    return datas.map((data, index) => {
+      return (
+        <div className="card-container" key={index.InstructorSid}>
+          <div className="top-div">
+            <p className="inst-name">{data.InstructorDetail}</p>
+            <p className="college">{data.CollegeName}</p>
+            <Stars className="star" ratings={data.Rating} />
+          </div>
+          <div className="base-div">
+            <Likes initialLikes={data.LikeDetail} />
+
+            <span className="rate-review">{data.SubmittedOnUtc}</span>
+          </div>
         </div>
-        <div className="base-div">
-          <Likes onpress={this.props.onIncrease} />
-          <span className="count-display">{this.props.Likes}</span>
-          <span className="rate-review">
-            Last Reviewed: {this.props.review}
-          </span>
-        </div>
-      </div>
-    );
+      );
+    });
   }
 }
