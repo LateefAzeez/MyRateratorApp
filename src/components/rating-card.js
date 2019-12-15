@@ -7,7 +7,7 @@ export class RatingCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Likes: this.props.data.LikeDetail
+      Likes: this.props.cardData.LikeDetail
     };
   }
   // for future improvement: Allow users to add rating
@@ -16,7 +16,7 @@ export class RatingCard extends Component {
   };
 
   render() {
-    const datas = this.props.data;
+    const datas = this.props.Data;
     // console.log(this.state.Likes);
 
     // map through the data to render each card based on data from the app component
@@ -24,14 +24,16 @@ export class RatingCard extends Component {
       return (
         <div className="card-container" key={index.InstructorSid}>
           <div className="top-div">
-            <p className="inst-name">{data.InstructorDetail}</p>
-            <p className="college">{data.CollegeName}</p>
-            <Stars className="star" ratings={data.Rating} />
+            <p className="inst-name">{this.props.cardData.InstructorDetail}</p>
+            <p className="college">{this.props.cardData.CollegeName}</p>
+            <Stars className="star" ratings={this.props.cardData.Rating} />
           </div>
           <div className="base-div">
-            <Likes initialLikes={data.LikeDetail} />
+            <Likes initialLikes={this.props.cardData.LikeDetail} />
 
-            <span className="rate-review">{data.SubmittedOnUtc}</span>
+            <span className="rate-review">
+              {this.props.cardData.SubmittedOnUtc}
+            </span>
           </div>
         </div>
       );

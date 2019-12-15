@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { RatingCard } from "./rating-card";
 /* import { AppData } from './data'; */
 import "./app.css";
+import { aggregateData } from "./data";
 import { AppData } from "./data";
 
 /// App
@@ -10,10 +11,7 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: AppData,
-      ratings: AppData.Ratings,
-      /* rating: AppData.Ratings, */
-      Likes: AppData.Likes
+      data: aggregateData()
     };
   }
 
@@ -27,39 +25,15 @@ export class App extends Component {
     //console.log(average(Ratings));
 
     //console.log(Schools);
-    const Instructors = Data.Instructors;
-    const Likes = Data.Likes;
+    const Instructors = AppData.Instructors;
+    const Likes = AppData.Likes;
     //console.log(Data);
-
-    // get the aggregate of ratings per instructor
-    let sums = {},
-      counts = {},
-      RateAggs = [],
-      InstructorSid;
-
-    for (let i = 0; i < AppData.Ratings.length; i++) {
-      InstructorSid = AppData.Ratings[i].InstructorSid;
-
-      if (!(InstructorSid in sums)) {
-        sums[InstructorSid] = 0;
-        counts[InstructorSid] = 0;
-      }
-      sums[InstructorSid] += AppData.Ratings[i].Rating;
-      counts[InstructorSid]++;
-    }
-    for (InstructorSid in sums) {
-      RateAggs.push({
-        InstructorSid: InstructorSid,
-
-        Rating: Math.floor(sums[InstructorSid] / counts[InstructorSid])
-      });
-    }
 
     // console.log(RateAggs);
 
     // iterate through the rating data to fetch out needed info and pass to the card component
 
-    RateAggs.map(rating => {
+    Data.map(rating => {
       AppData.Ratings.some(item => {
         if (rating.InstructorSid === item.InstructorSid) {
           /* console.log(school.Name); */
@@ -96,7 +70,7 @@ export class App extends Component {
         <br />
 
         <div>
-          <RatingCard data={RateAggs} initialLikes={RateAggs.LikeDetail} />
+          <RatingCard cardData={Data} initialLikes={Data.LikeDetail} />
         </div>
       </div>
     );
