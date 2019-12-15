@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { RatingCard } from "./rating-card";
-/* import { AppData } from './data'; */
+/* import { AppData, LikesCount } from './data'; */
 import "./app.css";
 import { aggregateData } from "./data";
 import { AppData } from "./data";
+import { LikesCount } from "./data";
 
 /// App
 export class App extends Component {
@@ -15,11 +16,9 @@ export class App extends Component {
     };
   }
 
-  ///
-
-  ///
   render() {
-    /*     console.log(this.state.ratings); */
+    //console.log(this.state.data);
+    //console.log(this.state.Likes);
 
     const Data = this.state.data;
     //console.log(average(Ratings));
@@ -70,7 +69,13 @@ export class App extends Component {
         <br />
 
         <div>
-          <RatingCard cardData={Data} initialLikes={Data.LikeDetail} />
+          <RatingCard
+            cardData={Data}
+            initialLikes={Data.map(item => {
+              item.LikeDetail;
+            })}
+            onLikePress={this.handleIncrease}
+          />
         </div>
       </div>
     );

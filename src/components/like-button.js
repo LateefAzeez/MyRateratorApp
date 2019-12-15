@@ -5,7 +5,7 @@ export class Likes extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Likes: this.props.initialLikes
+      Likes: this.props.InitialLikes
     };
   }
   // update the Like state when the like button is clicked
